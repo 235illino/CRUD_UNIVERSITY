@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Professors</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+
+</head>
+<body>
+
+<div class="container text-center">
+    <div>
+        <h1>Professors</h1>
+
+        <a href="/professors/create" class="btn btn-primary btn-sm mb-3"> Add Professor </a>
+    </div>
+    <div>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="professor: ${professors}">
+                <tr>
+                    <td>[[${professor.id}]]</td>
+                    <td>[[${professor.firstName}]]</td>
+                    <td>[[${professor.lastName}]]</td>
+                    <td>
+                        <a th:href="@{/professors/update/{id}(id=${professor.id})}"
+                           class="btn btn-primary btn-sm mb-3">Update</a>
+                        &nbsp;
+                        <a th:href="@{/professors/delete/{id}(id=${professor.id})}"
+                           class="btn btn-primary btn-sm mb-3">Delete</a>
+
+                    </td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <p><a class="h4" href="/university">Main page</a></p>
+
+    </div>
+
+</div>
+
+</body>
+</html>

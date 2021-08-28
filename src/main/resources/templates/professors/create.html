@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Professor create</title>
+    <link rel="stylesheet"
+          type="text/css"
+          th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container text-center">
+    <div>
+        <h1>Create / Update professor</h1>
+    </div>
+
+    <form th:action="@{/professors/create}" th:object="${professor}" method="post"
+          style="max-width: 600px; margin: 0 auto; ">
+        <input type="hidden" th:field="*{id}" th:value="${professor.id}" />
+        <div class="m-3">
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4">First Name: </label>
+                <div clas="col-sm-8">
+                    <input type="text" th:field="*{firstName}" class="form-control" required/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4">Last Name: </label>
+                <div clas="col-sm-8">
+                    <input type="text" th:field="*{lastName}" class="form-control" required/>
+                </div>
+            </div>
+            <div class="text-center" p-3>
+                <button type="submit" class="btn btn-primary"> Save Professor</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
