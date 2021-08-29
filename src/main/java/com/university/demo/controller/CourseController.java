@@ -9,6 +9,7 @@ import com.university.demo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import org.supercsv.io.ICsvBeanWriter;
 import org.supercsv.prefs.CsvPreference;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -63,7 +65,10 @@ public class CourseController {
     }
 
     @PostMapping("/courses/create")
-    public String createCourse(Course course) {
+    public String createCourse(@Valid Course course, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()) {
+            return "courses/create";
+        }
         courseService.saveCourse(course);
         return "redirect:/courses";
     }

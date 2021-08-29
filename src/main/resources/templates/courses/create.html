@@ -26,6 +26,7 @@
                 <input type="text" th:field="*{name}"
                        placeholder="Course name" class="form-control" required/>
             </div>
+            <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
         </div>
 
         <div class="form-group row">
@@ -37,6 +38,7 @@
                 <input type="text" th:field="*{startCourse}" placeholder="dd.mm.yyyy"
                        class="form-control"  required/>
             </div>
+            <div style="color:red" th:if="${#fields.hasErrors('startCourse')}" th:errors="*{startCourse}">Error</div>
         </div>
 
         <div class="form-group row">
@@ -48,6 +50,8 @@
                 <input type="text" th:field="*{endCourse}" placeholder="dd.mm.yyyy"
                        class="form-control"  required/>
             </div>
+            <div style="color:red" th:if="${#fields.hasErrors('endCourse')}" th:errors="*{endCourse}">Error</div>
+
         </div>
 
 

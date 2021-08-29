@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,13 +23,19 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty(message = "Name should not be empty")
+    @Size(min = 2, max = 45, message = "Name should be between 2 and 45 characters")
     @Column(nullable = false, length = 45, unique = true)
     private String name;
 
-    @Column(name = "start_course")
+    @NotEmpty(message = "Date should not be empty")
+    @Size(min = 10, max = 10, message = "Date format 00.00.0000")
+    @Column(name = "start_course", nullable = false, length = 10)
     private String startCourse;
 
-    @Column(name = "end_course")
+    @NotEmpty(message = "Date should not be empty")
+    @Size(min = 10, max = 10, message = "Date format 00.00.0000")
+    @Column(name = "end_course", nullable = false, length = 10)
     private String endCourse;
 
     @ManyToOne(fetch = FetchType.LAZY)

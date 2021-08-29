@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Data
 @AllArgsConstructor
@@ -18,11 +20,14 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-
-
-    @Column(name = "first_name")
+    @NotEmpty(message = "First Name should not be empty")
+    @Size(min = 2, max = 45, message = "First Name should be between 2 and 45 characters")
+    @Column(name = "first_name", nullable = false, length = 45)
     private String firstName;
-    @Column(name = "last_name")
+
+    @NotEmpty(message = "Last Name should not be empty")
+    @Size(min = 2, max = 45, message = "Last Name should be between 2 and 45 characters")
+    @Column(name = "last_name", nullable = false, length = 45)
     private String lastName;
 
 
