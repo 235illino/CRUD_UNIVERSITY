@@ -17,6 +17,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.annotation.Rollback;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -69,8 +70,8 @@ public class CourseRepositoryTest {
         studentSet.add(student2);
         studentSet.add(student3);
 
-        Course course = Course.builder().name("Course").startCourse("01.01.01")
-                .endCourse("01.01.02").professor(professor).students(studentSet).build();
+        Course course = Course.builder().name("Course").startCourse(LocalDate.of(2001, 1, 1))
+                .endCourse(LocalDate.of(2001, 1, 1)).professor(professor).students(studentSet).build();
         courseRepository.save(course);
         Assertions.assertThat(course.getId()).isGreaterThan(0);
 

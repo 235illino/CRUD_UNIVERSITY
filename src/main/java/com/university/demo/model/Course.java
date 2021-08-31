@@ -5,11 +5,17 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.datetime.DateFormatter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 @Data
@@ -28,15 +34,13 @@ public class Course {
     @Column(nullable = false, length = 45, unique = true)
     private String name;
 
-    @NotEmpty(message = "Date should not be empty")
-    @Size(min = 10, max = 10, message = "Date format 00.00.0000")
-    @Column(name = "start_course", nullable = false, length = 10)
-    private String startCourse;
+    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
+    @Column(name = "start_course", nullable = false)
+    private LocalDate startCourse;
 
-    @NotEmpty(message = "Date should not be empty")
-    @Size(min = 10, max = 10, message = "Date format 00.00.0000")
-    @Column(name = "end_course", nullable = false, length = 10)
-    private String endCourse;
+    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
+    @Column(name = "end_course", nullable = false)
+    private LocalDate endCourse;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "professor_id")

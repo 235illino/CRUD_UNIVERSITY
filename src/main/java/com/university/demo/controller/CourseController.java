@@ -24,6 +24,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -94,8 +95,7 @@ public class CourseController {
     public void exportToCsv(HttpServletResponse response) throws IOException {
 
         response.setContentType("text/csv");
-        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
-        String currentDateTime = dateFormatter.format(new Date());
+        LocalDateTime currentDateTime = LocalDateTime.now();
 
         File file = new File("/home/ilya/Downloads/demo/src/main/resources/report/courses_"
                 + currentDateTime + ".csv");
